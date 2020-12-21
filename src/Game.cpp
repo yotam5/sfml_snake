@@ -2,9 +2,8 @@
 #include "../headers/Game.h"
 #include <iostream>
 //-----------------------
-#include "./src/Menu.cpp"
 #include <vector>
-#include <sstream>
+#include <string>
 using namespace std;
 
 //constructor
@@ -23,8 +22,8 @@ Game::~Game()
 //init apple
 void Game::initApple()
 {
-    float x = 100 + rand() % (WIDTH - 100);
-    float y = 100 + rand() % (HEIGHT - 100);
+    float x = 100 + rand() % (WIDTH - 150);
+    float y = 100 + rand() % (HEIGHT - 150);
     this->apple.setPosition(x, y);
 }
 
@@ -40,9 +39,10 @@ void Game::initVariables()
     this->apple.setFillColor(sf::Color::Red);
     apple.setSize(sf::Vector2f(15.f, 15.f));
     this->currentEventArrow = sf::Keyboard::Right;
+
     //init apple coords
     this->initApple();
-
+    this->start = false;
     //init snake
     sf::RectangleShape tmp;
     tmp.setFillColor(sf::Color::Green);
@@ -112,7 +112,7 @@ const bool Game::isHeadInTail() const
     //the +20 is because the snake body is from a lot of cubes that
     //touch each other, if not like that when the snake make turns
     //it will move too fast to be playable.
-    for (auto i = begin(this->bodyParts) + 20; i != end(this->bodyParts); i++) 
+    for (auto i = begin(this->bodyParts) + 20; i != end(this->bodyParts); i++)
     {
         if ((*i).getGlobalBounds().intersects(head.getGlobalBounds()))
         {
@@ -125,11 +125,11 @@ const bool Game::isHeadInTail() const
 //check if game end with head in tail or outside screen
 bool Game::endOfGame() const
 {
-    if (this->isOutsideScreen() )
+    if (this->isOutsideScreen())
     {
         return true;
     }
-    if(this->score >= 3 && this->isHeadInTail())
+    if (this->score >= 3 && this->isHeadInTail())
     {
         return true;
     }
@@ -154,9 +154,9 @@ void Game::updateBodyParts()
 //update game
 void Game::update()
 {
-    this->endGame = this->endOfGame();
-    this->pollEvents();
 
+    this->pollEvents();
+    this->endGame = this->endOfGame();
     if (!this->getEndGame())
     {
         //logic
@@ -220,7 +220,8 @@ void Game::pollEvents()
         {
             this->window->close();
         }
-        handleDirections(event);
+
+        handleDirections(event); //here
     }
 }
 
@@ -307,9 +308,10 @@ void Game::renderText(sf::RenderTarget &target)
 void Game::initText()
 {
     this->uiText.setFont(font);
-    this->uiText.setCharacterSize(20);
+    this->uiText.setCharacterSize(30);
     this->uiText.setFillColor(sf::Color::White);
     this->uiText.setString("None");
+    this->uiText.move(360, 0);
 }
 
 //render screen

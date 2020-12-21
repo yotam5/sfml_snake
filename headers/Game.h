@@ -11,7 +11,7 @@
 #define WIDTH 800
 #define HEIGHT 600
 #define INIT_SIZE 10 //initial snake size
-#define SPEED 1.2 //speed
+#define SPEED 1.2    //speed
 
 //sfml libs
 #include <SFML/Graphics.hpp>
@@ -31,7 +31,7 @@ public:
     //update events
     void update();
 
-    //render 
+    //render
     void render();
 
     //handle event from keyboard etc
@@ -40,7 +40,7 @@ public:
     //render snake
     void renderBodyParts(sf::RenderTarget &target);
 
-    //update snake 
+    //update snake
     void updateBodyParts();
 
     //return if game end bool
@@ -76,8 +76,20 @@ public:
     //render text
     void renderText(sf::RenderTarget &target);
 
+    //get Window
+    sf::RenderWindow *getWindow() const { return this->window; }
+
+    //get screen height
+    int getScreenHeight() const { return HEIGHT; }
+
+    //get screen width
+    int getScreenWidth() const { return WIDTH; }
+
     //check if game ended with touch tail or out of screen
     bool endOfGame() const;
+
+    //get is game started
+    bool isGameStarted() const { return this->start; }
 
 private:
     //widow stuff
@@ -116,9 +128,9 @@ private:
     sf::RectangleShape apple;
 
     //boolean
-    bool running;
-    bool endGame;
-
+    bool running; //is window open
+    bool endGame; //did the game end
+    bool start;   //did the game start
     //vector of snake body parts
     std::vector<sf::RectangleShape> bodyParts;
 };

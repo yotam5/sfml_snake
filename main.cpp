@@ -1,6 +1,8 @@
 #include <iostream>
+#include <string>
+#include <vector>
 #include "./src/Game.cpp"
-
+#include "./src/Menu.cpp"
 
 using namespace std;
 
@@ -17,11 +19,22 @@ using namespace std;
 int main()
 {
     Game game;
-    
-    srand(time(NULL));
-    while(game.isRunning() && !game.getEndGame())
+    vector<string> ops = {"Play", "Quite"};
+    Menu menu = Menu(game.getScreenWidth(), game.getScreenHeight(),
+                     ops, game.getWindow());
+    int res = -1;
+    menu.run(res);
+    if (res == 0) //Play
     {
-        game.update();
-        game.render();
+        srand(time(NULL));
+        while (game.isRunning() && !game.getEndGame())
+        {
+            game.update();
+            game.render();
+        }
+    }
+    else
+    {
+        game.getWindow()->close();
     }
 }
