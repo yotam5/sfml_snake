@@ -77,19 +77,19 @@ public:
     void renderText(sf::RenderTarget &target);
 
     //get Window
-    sf::RenderWindow *getWindow() const { return this->window; }
+    sf::RenderWindow *getWindow() const;
 
     //get screen height
-    int getScreenHeight() const { return HEIGHT; }
+    int getScreenHeight() const;
 
     //get screen width
-    int getScreenWidth() const { return WIDTH; }
+    int getScreenWidth() const;
 
     //check if game ended with touch tail or out of screen
     bool endOfGame() const;
 
     //get is game started
-    bool isGameStarted() const { return this->start; }
+    bool isGameStarted() const;
 
 private:
     //widow stuff
@@ -130,7 +130,6 @@ private:
     //boolean
     bool running; //is window open
     bool endGame; //did the game end
-    bool start;   //did the game start
     //vector of snake body parts
     std::vector<sf::RectangleShape> bodyParts;
 };

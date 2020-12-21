@@ -1,6 +1,7 @@
 #include "../headers/Menu.h"
 using namespace std;
 
+//constructor
 Menu::Menu(int width, int height, vector<string> menuText,
            sf::RenderWindow *win,int textSize)
 {
@@ -26,6 +27,7 @@ Menu::Menu(int width, int height, vector<string> menuText,
     }
 }
 
+//go up in menu
 void Menu::MoveUp()
 {
     if (this->seletedItemIndex - 1 >= 0)
@@ -36,6 +38,7 @@ void Menu::MoveUp()
     }
 }
 
+//go down in menu
 void Menu::MoveDown()
 {
     if (this->seletedItemIndex + 1 <= this->menu.size() - 1)
@@ -46,7 +49,7 @@ void Menu::MoveDown()
     }
 }
 
-//run menu
+//run menu on game screen and save result to variable from outside
 void Menu::run(int &save_res)
 {
     bool press = false;
@@ -90,10 +93,12 @@ void Menu::run(int &save_res)
     }
 }
 
+//destructor
 Menu::~Menu()
 {
 }
 
+//drae to target 
 void Menu::draw(sf::RenderTarget &target)
 {
     for (int i = 0; i < this->menu.size(); i++)

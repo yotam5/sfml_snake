@@ -1,11 +1,16 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <thread>
+#include <chrono>
+
+//user libs
 #include "./src/Game.cpp"
 #include "./src/Menu.cpp"
 
 using namespace std;
 
+//sfml libs
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
@@ -19,12 +24,12 @@ using namespace std;
 int main()
 {
     Game game;
-    vector<string> ops = {"Play", "Quite"};
-    Menu menu = Menu(game.getScreenWidth(), game.getScreenHeight(),
+    vector<string> ops = {"Play", "Quit"};                          //game options
+    Menu menu = Menu(game.getScreenWidth(), game.getScreenHeight(), //start menu screen
                      ops, game.getWindow());
     int res = -1;
     menu.run(res);
-    if (res == 0) //Play
+    if (res == 0) //handle Play
     {
         srand(time(NULL));
         while (game.isRunning() && !game.getEndGame())
@@ -32,8 +37,9 @@ int main()
             game.update();
             game.render();
         }
+        this_thread::sleep_for(chrono::seconds(4));
     }
-    else
+    else //handle Quit
     {
         game.getWindow()->close();
     }

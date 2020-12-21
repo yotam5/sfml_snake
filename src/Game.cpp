@@ -33,16 +33,19 @@ void Game::initVariables()
     this->window = nullptr;
     this->endGame = false;
     this->score = 0;
+
+    //fonts and texts
     this->initFonts();
     this->initText();
-    //apple color doenst change
+
+    //apple color and coords
     this->apple.setFillColor(sf::Color::Red);
+    this->initApple();
     apple.setSize(sf::Vector2f(15.f, 15.f));
+
+    //directinon at the begining
     this->currentEventArrow = sf::Keyboard::Right;
 
-    //init apple coords
-    this->initApple();
-    this->start = false;
     //init snake
     sf::RectangleShape tmp;
     tmp.setFillColor(sf::Color::Green);
@@ -67,6 +70,11 @@ void Game::initWindow()
                                         sf::Style::Titlebar | sf::Style::Close);
     //init frame rate
     this->window->setFramerateLimit(60); //limit frame rate and make game playable
+
+    //center
+    auto desktop = sf::VideoMode::getDesktopMode();
+    auto center = sf::Vector2i(desktop.width / 4, desktop.height / 4); //for center becuse it set top left
+    window->setPosition(center);
 }
 
 //check if snake is outside screen
@@ -297,6 +305,17 @@ void Game::addPartToSnake()
         }
     }
 }
+
+//return window
+sf::RenderWindow *Game::getWindow() const { return this->window; }
+
+//get screen height
+int Game::getScreenHeight() const { return HEIGHT; }
+
+//get screen width
+int Game::getScreenWidth() const { return WIDTH; }
+
+//check if game ended with touch tail or out of screen
 
 //render text
 void Game::renderText(sf::RenderTarget &target)
