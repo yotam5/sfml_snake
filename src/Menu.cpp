@@ -30,7 +30,7 @@ Menu::Menu(int width, int height, vector<string> menuText,
 //go up in menu
 void Menu::MoveUp()
 {
-    if (this->seletedItemIndex - 1 >= 0)
+    if (this->seletedItemIndex -1 >= 0)
     {
         this->menu[seletedItemIndex].setFillColor(sf::Color::White);
         seletedItemIndex--;
