@@ -50,7 +50,7 @@ void Game::initVariables()
     sf::RectangleShape tmp;
     tmp.setFillColor(sf::Color::Green);
     tmp.setSize(sf::Vector2f(15.f, 15.f));
-    tmp.move(400.f, 10);
+    tmp.move(400.f, 70);
     this->bodyParts.push_back(tmp);
     tmp.setFillColor(sf::Color::Blue);
     tmp.setSize(sf::Vector2f(15.f, 15.f));
@@ -137,7 +137,7 @@ bool Game::endOfGame() const
     {
         return true;
     }
-    if (this->score >= 3 && this->isHeadInTail())
+    if (this->score >= 2 && this->isHeadInTail())
     {
         return true;
     }

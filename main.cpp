@@ -37,7 +37,7 @@ int main()
             game.update();
             game.render();
         }
-        this_thread::sleep_for(chrono::seconds(4));
+        this_thread::sleep_for(chrono::seconds(3));
     }
     else //handle Quit
     {
