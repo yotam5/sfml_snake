@@ -5,8 +5,8 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 I wanted to practice my c++ and also to be able to make simple 2d games for fun
-so im learning SFML, this is curretly the first game that i made, its not the best
-i think and ill probably will do some improvments and refactor some things.
+so im learning SFML, this is currently the first game that i made with SFML, its not the best
+and ill probably refactor this and change some things a bit.
 
 ### Built With
 
